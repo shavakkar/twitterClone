@@ -24,7 +24,13 @@ let randImg2 = ref(
 );
 
 let createTweet = ref(false);
+let textarea = ref("");
 let tweet = ref("");
+
+const textareaInput = (e) => {
+    textarea.value.style.height = "auto";
+    textarea.value.style.height = `${e.target.scrollHeight}px`;
+};
 </script>
 
 <template>
@@ -242,6 +248,18 @@ let tweet = ref("");
                             />
                         </div>
                     </div>
+
+                    <div>
+                        <textarea
+                            :oninput="textareaInput"
+                            cols="30"
+                            rows="4"
+                            placeholder="What's Happening?"
+                            v-model="tweet"
+                            ref="textarea"
+                            class="w-full bg-black border-0 mt-2 focus:ring-0 text-white text-[19px] font-extrabold min-h-[120px]"
+                        ></textarea>
+                    </div>
                 </div>
             </div>
         </div>
@@ -251,5 +269,8 @@ let tweet = ref("");
 <style>
 body {
     background-color: black;
+}
+textarea {
+    resize: none;
 }
 </style>
