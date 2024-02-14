@@ -27,6 +27,23 @@ let createTweet = ref(false);
 let textarea = ref("");
 let tweet = ref("");
 
+let file = ref("");
+let showUpload = ref("");
+let uploadType = ref("");
+
+const getFile = (e) => {
+    file.value = e.target.files[0];
+    showUpload.value = URL.createObjectURL(e.target.files[0]);
+    uploadType.value = file.value.name.split(".").pop();
+};
+
+const closeMessageBox = () => {
+    createTweet.value = false;
+    tweet.value = "";
+    showUpload.value = "";
+    uploadType.value = "";
+};
+
 const textareaInput = (e) => {
     textarea.value.style.height = "auto";
     textarea.value.style.height = `${e.target.scrollHeight}px`;
@@ -50,6 +67,7 @@ const textareaInput = (e) => {
                 <MenuItem iconString="Profile" />
 
                 <button
+                    @click="createTweet = true"
                     class="lg:w-full mt-8 ml-2 text-white font-extrabold text-[22px] bg-[#1c9cef] px-3 p-3 rounded-full cursor-pointer"
                 >
                     <span class="lg:block hidden">Tweet</span>
@@ -193,6 +211,7 @@ const textareaInput = (e) => {
     </div>
     <div
         id="OverlaySection"
+        v-if="createTweet"
         class="fixed top-0 left-0 w-full h-screen bg-black md:bg-gray-400 md:bg-opacity-30 md:p-3"
     >
         <div class="md:max-w-2xl md:mx-auto md:mt-10 md:rounded-xl bg-black">
@@ -200,6 +219,7 @@ const textareaInput = (e) => {
                 class="flex items-center justify-between md:inline-block p-2 m-2 rounded-full cursor-pointer"
             >
                 <div
+                    @click="closeMessageBox()"
                     class="hover:bg-gray-800 inline-block p-2 rounded-full cursor-pointer"
                 >
                     <Close
@@ -259,6 +279,70 @@ const textareaInput = (e) => {
                             ref="textarea"
                             class="w-full bg-black border-0 mt-2 focus:ring-0 text-white text-[19px] font-extrabold min-h-[120px]"
                         ></textarea>
+                    </div>
+
+                    <div class="w-full">
+                        <video
+                            controls
+                            v-if="uploadType === 'mp4'"
+                            :src="showUpload"
+                            class="rounded-xl overflow-auto"
+                        />
+                        <img
+                            v-else
+                            :src="showUpload"
+                            class="rounded-xl min-w-full"
+                        />
+                    </div>
+
+                    <div
+                        class="flex py-2 items-center text-[#1c9cef] font-extrabold"
+                    >
+                        <Earth class="pr-2" fillColor="#1c9cef" :size="20" />
+                        Everyone can reply
+                    </div>
+                    <div class="border-b border-b-gray-700"></div>
+                    <div class="flex items-center justify-between py-2">
+                        <div class="flex items-center">
+                            <div
+                                class="hover:bg-gray-800 inline-block p-2 rounded-full cursor-pointer"
+                            >
+                                <label for="fileUpload" class="cursor-pointer">
+                                    <ImageOutline
+                                        fillColor="#1c9cef"
+                                        :size="25"
+                                    />
+                                </label>
+                                <input
+                                    type="file"
+                                    id="fileUpload"
+                                    class="hidden"
+                                    @change="getFile"
+                                />
+                            </div>
+                            <div
+                                class="hover:bg-gray-800 inline-block p-2 rounded-full cursor-pointer"
+                            >
+                                <FileGifBox fillColor="#1c9cef" :size="25" />
+                            </div>
+                            <div
+                                class="hover:bg-gray-800 inline-block p-2 rounded-full cursor-pointer"
+                            >
+                                <Emoticon fillColor="#1c9cef" :size="25" />
+                            </div>
+                        </div>
+
+                        <button
+                            :disabled="!tweet"
+                            :class="
+                                tweet
+                                    ? 'bg-[#1c9cef] text-white'
+                                    : 'bg-[#124d77] text-gray-400'
+                            "
+                            class="hidden md:block font-extrabold text-[16px] p-1.5 px-4 rounded-full cursor-pointer"
+                        >
+                            Tweet
+                        </button>
                     </div>
                 </div>
             </div>
