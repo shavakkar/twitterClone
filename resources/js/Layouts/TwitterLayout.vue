@@ -86,6 +86,7 @@ let tweet = ref("");
                 <slot />
                 <div class="pb-4"></div>
             </div>
+
             <div
                 class="lg:block hidden lg:w-4/12 h-screen border-l border-gray-800 pl-4"
             >
@@ -183,48 +184,63 @@ let tweet = ref("");
                 </div>
             </div>
         </div>
-
-        <div
-            id="OverlaySection"
-            class="fixed top-0 left-0 w-full h-screen bg-black md:bg-gray-400 md:bg-opacity-30 md:p-3"
-        >
+    </div>
+    <div
+        id="OverlaySection"
+        class="fixed top-0 left-0 w-full h-screen bg-black md:bg-gray-400 md:bg-opacity-30 md:p-3"
+    >
+        <div class="md:max-w-2xl md:mx-auto md:mt-10 md:rounded-xl bg-black">
             <div
-                class="md:max-w-2xl md:mx-auto md:mt-10 md:rounded-xl bg-black"
+                class="flex items-center justify-between md:inline-block p-2 m-2 rounded-full cursor-pointer"
             >
                 <div
-                    class="flex items-center justify-between md:inline-block p-2 m-2 rounded-full cursor-pointer"
+                    class="hover:bg-gray-800 inline-block p-2 rounded-full cursor-pointer"
                 >
-                    <div
-                        class="hover:bg-gray-800 inline-block p-2 rounded-full cursor-pointer"
-                    >
-                        <Close
-                            fillColor="#FFFFFF"
-                            :size="28"
-                            class="md:block hidden"
-                        />
-                        <ArrowLeft
-                            fillColor="#FFFFFF"
-                            :size="28"
-                            class="md:hidden block"
-                        />
-                    </div>
-
-                    <button
-                        :disabled="!tweet"
-                        :class="
-                            tweet
-                                ? 'bg-[#1c9cef] text-white'
-                                : 'bg-[#124d77] text-gray-400'
-                        "
-                        class="md:hidden font-extrabold text-[16px] p-1.5 px-4 rounded-full cursor-pointer"
-                    >
-                        Tweet
-                    </button>
+                    <Close
+                        fillColor="#FFFFFF"
+                        :size="28"
+                        class="md:block hidden"
+                    />
+                    <ArrowLeft
+                        fillColor="#FFFFFF"
+                        :size="28"
+                        class="md:hidden block"
+                    />
                 </div>
 
-                <div class="w-full flex">
-                    <div class="ml-3.5 mr-2">
-                        <img class="rounded-full" width="55" :src="randImg1" />
+                <button
+                    :disabled="!tweet"
+                    :class="
+                        tweet
+                            ? 'bg-[#1c9cef] text-white'
+                            : 'bg-[#124d77] text-gray-400'
+                    "
+                    class="md:hidden font-extrabold text-[16px] p-1.5 px-4 rounded-full cursor-pointer"
+                >
+                    Tweet
+                </button>
+            </div>
+
+            <div class="w-full flex">
+                <div class="ml-3.5 mr-2">
+                    <img class="rounded-full" width="55" :src="randImg1" />
+                </div>
+                <div class="w-[calc(100%-100px)]">
+                    <div class="inline-block">
+                        <div
+                            class="flex items-center border border-gray-700 rounded-full"
+                        >
+                            <span
+                                class="text-[#1c9cef] p-0.5 pl-3.5 font-extrabold"
+                            >
+                                Everyone
+                            </span>
+                            <ChevronDown
+                                class="pr-2"
+                                fillColor="#1c9cef"
+                                :size="25"
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
