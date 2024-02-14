@@ -8,6 +8,6 @@ import TwitterLayout from "@/Layouts/TwitterLayout.vue";
     <Head title="Welcome" />
 
     <TwitterLayout>
-        <div class="bg-red-600">Welcome</div>
+        <!-- <div class="bg-red-600">Welcome</div> -->
     </TwitterLayout>
 </template>

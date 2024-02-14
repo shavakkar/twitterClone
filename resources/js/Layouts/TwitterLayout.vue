@@ -15,6 +15,10 @@ import Emoticon from "vue-material-design-icons/Emoticon.vue";
 import ArrowLeft from "vue-material-design-icons/ArrowLeft.vue";
 
 import MenuItem from "@/Components/MenuItem.vue";
+
+let randImg2 = ref(
+    `https://picsum.photos/id/${(Math.random() * 200).toFixed(0)}/100`
+);
 </script>
 
 <template>
@@ -61,6 +65,113 @@ import MenuItem from "@/Components/MenuItem.vue";
                                     <div class="my-auto mt-4">For you</div>
                                 </div>
                             </div>
+                            <div
+                                class="w-full h-[60px] text-gray-500 text-[17px] font-extrabold p-4 hover:bg-gray-500 hover:bg-opacity-30 cursor-pointer transition duration-200 ease-in-out"
+                            >
+                                <div class="text-center">Following</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="absolute top-0 z-0 h-full overflow-auto scrollbar-hide">
+                <div class="mt-[126px]"></div>
+                <slot />
+                <div class="pb-4"></div>
+            </div>
+            <div
+                class="lg:block hidden lg:w-4/12 h-screen border-l border-gray-800 pl-4"
+            >
+                <div
+                    class="w-full p-1 mt-2 px-4 lg:flex items-center rounded-full hidden bg-[#212327]"
+                >
+                    <Magnify fillColor="#5e5c5c" :size="25" />
+                    <input
+                        class="appearance-none w-full border-0 py-2 bg-[#212327] text-gray-100 placeholder-gray-500 leading-tight focus:ring-0"
+                        type="text"
+                        placeholder="Search Twitter"
+                    />
+                </div>
+
+                <div
+                    class="w-full mt-4 rounded-lg lg:block hidden bg-[#212327]"
+                >
+                    <div
+                        class="w-full p-4 text-white font-extrabold mb-6 text-[20px]"
+                    >
+                        What's Happening
+                    </div>
+
+                    <div
+                        class="h-[80px] hover:bg-gray-800 cursor-pointer transition duration-200 ease-in-out"
+                    >
+                        <div class="flex p-3 justify-between h-[80px] py-3">
+                            <div>
+                                <div class="text-[14px] text-gray-400">
+                                    Tennis Touranment Live
+                                </div>
+                                <div
+                                    class="w-full text-white font-extrabold mb-6 text-[17px]"
+                                >
+                                    Australian Open 2023
+                                </div>
+                            </div>
+                            <img class="rounded-xl" :src="randImg2" />
+                        </div>
+                    </div>
+                    <div
+                        class="hover:bg-gray-800 cursor-pointer transition duration-200 ease-in-out"
+                    >
+                        <div class="flex p-3 justify-between">
+                            <div>
+                                <div class="text-[14px] text-gray-400">
+                                    Trending in United Kingdom
+                                </div>
+                                <div
+                                    class="w-full text-white font-extrabold text-[17px]"
+                                >
+                                    Doomsday Clock
+                                </div>
+                                <div class="text-[14px] text-gray-400">
+                                    5,923 Tweets
+                                </div>
+                            </div>
+                            <DotsHorizontal fillColor="#5e5c5c" />
+                        </div>
+
+                        <div class="flex p-3 justify-between">
+                            <div>
+                                <div class="text-[14px] text-gray-400">
+                                    Politics . Trending
+                                </div>
+                                <div
+                                    class="w-full text-white font-extrabold text-[17px]"
+                                >
+                                    Sunak
+                                </div>
+                                <div class="text-[14px] text-gray-400">
+                                    98,745 Tweets
+                                </div>
+                            </div>
+                            <DotsHorizontal fillColor="#5e5c5c" />
+                        </div>
+
+                        <div class="flex p-3 justify-between">
+                            <div>
+                                <div class="text-[14px] text-gray-400">
+                                    Sports . Trending
+                                </div>
+                                <div
+                                    class="w-full text-white font-extrabold text-[17px]"
+                                >
+                                    Poro
+                                </div>
+                                <div class="text-[14px] text-gray-400">
+                                    12,432 Tweets
+                                </div>
+                            </div>
+                            <DotsHorizontal fillColor="#5e5c5c" />
                         </div>
                     </div>
                 </div>
